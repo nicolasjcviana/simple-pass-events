@@ -1,0 +1,9 @@
+{
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://nr-zpx.nicolasjcviana.app-simple-pass-events.exp.direct",
+  "packagerNgrokUrl": "https://packager.nr-zpx.nicolasjcviana.app-simple-pass-events.exp.direct",
+  "ngrokPid": 7100,
+  "packagerPort": 19001,
+  "packagerPid": 1780,
+  "devToolsPort": 19002
+}

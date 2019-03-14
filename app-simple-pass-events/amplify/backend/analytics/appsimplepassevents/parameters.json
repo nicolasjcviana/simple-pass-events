@@ -1,0 +1,20 @@
+{
+    "appName": "appsimplepassevents",
+    "roleName": "pinpointLambdaRole1f845f7e",
+    "cloudWatchPolicyName": "cloudWatchPolicy1f845f7e",
+    "pinpointPolicyName": "pinpointPolicy1f845f7e",
+    "authPolicyName": "pinpoint_amplify_1f845f7e",
+    "unauthPolicyName": "pinpoint_amplify_1f845f7e",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+	"auth": {
+		"cognitod1708a59": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"analytics": {
+		"appsimplepassevents": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

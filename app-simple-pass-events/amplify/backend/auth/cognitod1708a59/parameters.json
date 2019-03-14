@@ -1,0 +1,30 @@
+{
+    "identityPoolName": "appsimplepassevents_identitypool_1b0b2b7e",
+    "allowUnauthenticatedIdentities": true,
+    "thirdPartyAuth": false,
+    "lambdaLogPolicy": "appsimplepassevents_lambda_log_policy",
+    "openIdLambdaRoleName": "appsimplepassevents_openid_lambda_role",
+    "openIdRolePolicy": "appsimplepassevents_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "appsimplepassevents_openid_lambda_iam_policy",
+    "openIdLogPolicy": "appsimplepassevents_openid_lambda_log_policy",
+    "authSelections": "identityPoolOnly",
+    "resourceName": "cognitod1708a59",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    }
+}

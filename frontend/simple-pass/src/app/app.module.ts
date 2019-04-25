@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import {AppRoutingModule} from  './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { CameraComponent } from './camera/camera.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CameraComponent
+    CameraComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

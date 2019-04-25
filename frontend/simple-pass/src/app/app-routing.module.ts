@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { CameraComponent} from './camera/camera.component';
 
 const routes: Routes = [
-  { path: '', component : AppComponent},
+  // { path: '', component : AppComponent},
   { path: 'camera', component : CameraComponent}
 ];
 

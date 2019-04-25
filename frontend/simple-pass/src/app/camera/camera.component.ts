@@ -42,6 +42,10 @@ export class CameraComponent implements OnInit {
     this.captures.push(img);
   }
 
+  public selectPicture(){
+    
+  }
+
   public sendPictureToBucketAndCompare(img : any){
     console.log(img)
     return img;

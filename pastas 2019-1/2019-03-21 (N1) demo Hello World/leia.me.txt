@@ -1,0 +1,8 @@
+Para iniciar o hello world:
+
+Instalar o node, em https://nodejs.org/en/download/
+Ir até a pasta simple-pass-events/backend e executar o seguinte comando no prompt de comandos para iniciar a instalação
+das dependências do projeto: "npm install"
+Após finalizado o procedimento de instação, executar o comando "node server.js" para iniciar a aplicação
+Feito isso, acessar o endereço "www.localhost:3000"
+Se o processo ocorrer sem falhas, será possível visualizar a mensagem de "Hello World"

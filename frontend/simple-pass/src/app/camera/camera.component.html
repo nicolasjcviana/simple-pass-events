@@ -1,0 +1,10 @@
+<div id="app">
+  <div><video #video id="video" width="640" height="480" autoplay></video></div>
+  <div><button id="snap" (click)="capture()">Take Photo</button></div>
+  <canvas #canvas id="canvas" width="640" height="480"></canvas>
+  <ul>
+      <li *ngFor="let capture of captures">
+          <img (click)="sendPictureToBucketAndCompare(capture)" class="img-clickable" src="{{ capture }}" height="50" />
+        </li>
+  </ul>
+</div>

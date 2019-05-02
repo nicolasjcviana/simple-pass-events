@@ -29,6 +29,7 @@ export class CameraComponent implements OnInit {
         if (navigator.userAgent.indexOf('Firefox') > -1) {
           this.video.nativeElement.srcObject = stream;//window.URL.createObjectURL(stream);
         } else {
+          console.log(stream)
           this.video.nativeElement.src = window.URL.createObjectURL(stream);
         }
         this.video.nativeElement.play();
@@ -43,7 +44,7 @@ export class CameraComponent implements OnInit {
   }
 
   public selectPicture(){
-    
+
   }
 
   public sendPictureToBucketAndCompare(img : any){

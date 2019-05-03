@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Cadastro de eventos</h1>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <label for="title">Título</label>
+        <input nz-input class="form-control" formControlName="title" id="title">
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <label for="desc">Descrição</label>
+        <input nz-input class="form-control" id="desc" formControlName="desc">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <label for="ticketValue">Preço do ticket</label>
+        <input nz-input class="form-control" formControlName="ticketValue" id="ticketValue">
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <label for="location">Local</label>
+        <input nz-input class="form-control" id="location" formControlName="location">
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <label> </label>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <label for="fullDesc">Descrição detalhada</label>
+        <input nz-input class="form-control" id="fullDesc">
+      </div>
+    </div>
+
+    <br />
+    <button class="btn btn-primary btn-md" (click)="checkEvent(form.value)" type="submit">Salvar</button>
+  </form>
+</div>

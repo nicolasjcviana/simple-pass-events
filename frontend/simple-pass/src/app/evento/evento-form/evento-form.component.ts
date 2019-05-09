@@ -11,14 +11,14 @@ import { NzInputNumberModule } from 'ng-zorro-antd';
 })
 export class EventoFormComponent implements OnInit {
 
-  form : FormGroup
+  form: FormGroup
   numberPattern = /^[0-9]*$/
 
   formatterReal = (value: number) => `R$ ${value}`;
   parserReal = (value: string) => value.replace('R$ ', '');
 
 
-  constructor(private formBuilder: FormBuilder ) {
+  constructor(private formBuilder: FormBuilder) {
 
   }
 
@@ -26,20 +26,20 @@ export class EventoFormComponent implements OnInit {
     this.createFormGroup();
   }
 
-  createFormGroup(){
+  createFormGroup() {
     this.form = this.formBuilder.group({
-      title : this.formBuilder.control('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-      desc : this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-      fullDesc : this.formBuilder.control('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
-      ticketValue : this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
-      location : this.formBuilder.control('', Validators.required),
-      dateTime : this.formBuilder.control('', Validators.required)
+      title: this.formBuilder.control('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      desc: this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+      fullDesc: this.formBuilder.control('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
+      ticketValue: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
+      location: this.formBuilder.control('', Validators.required),
+      dateTime: this.formBuilder.control('', Validators.required)
     })
 
-    this.form.patchValue({title: 'banan'})
+    //this.form.patchValue({ title: 'banan' })
   }
 
-  checkEvent(evento : Evento){
+  checkEvent(evento: Evento) {
     console.log(evento)
   }
 

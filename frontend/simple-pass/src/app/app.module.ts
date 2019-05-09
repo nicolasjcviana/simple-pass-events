@@ -13,6 +13,7 @@ import { NgZorroAntdModule, NZ_I18N, pt_BR } from 'ng-zorro-antd';
 /** config angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import pt from '@angular/common/locales/br';
+import { FooterComponent } from './footer/footer.component';
 registerLocaleData(pt);
 
 @NgModule({
@@ -21,7 +22,8 @@ registerLocaleData(pt);
     CameraComponent,
     HeaderComponent,
     EventoFormComponent,
-    EventoListComponent
+    EventoListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,7 @@ registerLocaleData(pt);
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: NZ_I18N, useValue: pt_BR }
+ //   { provide: NZ_I18N, useValue: pt_BR }
   ],
   bootstrap: [AppComponent]
 })

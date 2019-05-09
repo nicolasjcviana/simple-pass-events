@@ -17,8 +17,6 @@ export class CameraComponent implements OnInit {
 
   public captures: Array<any>
 
-  title = 'app works!';
-
   public ngOnInit() {
     this.captures = []
   }
@@ -43,11 +41,11 @@ export class CameraComponent implements OnInit {
     this.captures.push(img);
   }
 
-  public selectPicture(){
+  public selectPicture() {
 
   }
 
-  public sendPictureToBucketAndCompare(img : any){
+  public sendPictureToBucketAndCompare(img: any) {
     console.log(img)
     return img;
   }

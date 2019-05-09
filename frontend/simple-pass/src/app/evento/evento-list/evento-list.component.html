@@ -1,3 +1,34 @@
-<p>
-  evento-list works!
-</p>
+<div style="height: 20px;">
+
+</div>
+
+
+<div>
+  <button class="btn btn-primary btn-md" (click)="createNew()" >Novo</button>
+</div>
+<nz-table #basicTable [nzData]="events">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Descrição completa</th>
+      <th>Preço</th>
+      <th>Local</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.title}}</td>
+      <td>{{data.desc}}</td>
+      <td>{{data.fullDesc}}</td>
+      <td>{{data.ticketValue}}</td>
+      <td>{{data.location}}</td>
+      <td>
+        <a>Editar</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>Deletar</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

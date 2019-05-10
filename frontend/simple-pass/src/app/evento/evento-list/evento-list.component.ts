@@ -26,6 +26,4 @@ export class EventoListComponent implements OnInit {
   createNew() {
     this.router.navigate(['/evento-form/id=0']);
   }
-
-
 }

@@ -14,6 +14,10 @@ import { NgZorroAntdModule, NZ_I18N, pt_BR } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import pt from '@angular/common/locales/br';
 import { FooterComponent } from './footer/footer.component';
+import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.component';
+import { CameraService } from './camera/camera.service';
+import { UsuarioService } from './usuario/usuario.service';
+import { EventoService } from './evento/evento.service';
 registerLocaleData(pt);
 
 @NgModule({
@@ -23,7 +27,8 @@ registerLocaleData(pt);
     HeaderComponent,
     EventoFormComponent,
     EventoListComponent,
-    FooterComponent
+    FooterComponent,
+    UsuarioFormComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,10 @@ registerLocaleData(pt);
     BrowserAnimationsModule
   ],
   providers: [
- //   { provide: NZ_I18N, useValue: pt_BR }
+    CameraService,
+    UsuarioService,
+    EventoService,
+   { provide: NZ_I18N, useValue: pt_BR }
   ],
   bootstrap: [AppComponent]
 })

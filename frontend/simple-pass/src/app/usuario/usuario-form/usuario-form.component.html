@@ -1,0 +1,66 @@
+<nz-steps [nzCurrent]="current">
+  <nz-step nzTitle="Cadastro" nzDescription="Cadastro de usuário"></nz-step>
+  <nz-step nzTitle="Foto" nzDescription="Tirar foto"></nz-step>
+  <nz-step nzTitle="Finalização" nzDescription="Finalização do processo"></nz-step>
+</nz-steps>
+
+<div *ngIf="current === 0">
+  <div class="container">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <label for="title">Nome</label>
+          <input nz-input class="form-control" formControlName="name" id="title">
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <label for="desc">E-mail</label>
+          <input nz-input class="form-control" id="desc" formControlName="email">
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-sm-6 col-xs-12">
+          <label for="ticketValue">CPF</label>
+          <input nz-input class="form-control" formControlName="cpf" id="ticketValue">
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <label for="location">Telefone</label>
+          <input nz-input class="form-control" id="location" formControlName="telephone">
+        </div>
+      </div>
+      <br />
+
+      <br />
+      <button style="float: right" class="btn btn-primary btn-md" (click)="nextStep(form.value)"
+        type="submit">Próximo</button>
+    </form>
+  </div>
+</div>
+
+<!--STEP 2-->
+<div *ngIf="current === 1">
+  <div>
+    <video class="camera-bordered" style="float: left" #video id="video" width="440" height="380" autoplay></video>
+    <canvas class="camera-bordered picture-taken" #canvas id="canvas" width="440" height="380"></canvas>
+  </div>
+  <div width="440" style="margin-bottom: 20px;">
+    <button class="btn btn-primary btn-md take-picture-button" id="snap" (click)="capture()">Tirar foto</button>
+  </div>
+  <div>
+    <button class="btn btn-primary btn-md" (click)="goBack()" type="submit">Voltar</button>
+    <button [disabled]="!user.picture" style="float: right" class="btn btn-primary btn-md" (click)="finalStep()"
+      type="submit">Próximo</button>
+  </div>
+</div>
+
+<!--STEP 3-->
+<div *ngIf="current === 2">
+  <div style="margin-left: 40%">
+    <h2>Enviando..</h2>
+
+    <nz-progress class="nz-progress" [nzPercent]="percent" nzType="circle"></nz-progress>
+    <nz-button-group>
+      <button nz-button (click)="decline()"><i nz-icon type="minus"></i></button>
+      <button nz-button (click)="increase()"><i nz-icon type="plus"></i></button>
+    </nz-button-group>
+  </div>
+</div>

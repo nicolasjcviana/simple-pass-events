@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
+import {CameraService} from './camera.service';
 @Component({
   selector: 'camera',
   templateUrl: './camera.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class CameraComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cameraService : CameraService) { }
 
   @ViewChild("video")
   public video: ElementRef;
@@ -46,7 +46,7 @@ export class CameraComponent implements OnInit {
   }
 
   public sendPictureToBucketAndCompare(img: any) {
-    console.log(img)
+    this.cameraService.sendPictureAndCompare(img);
     return img;
   }
 

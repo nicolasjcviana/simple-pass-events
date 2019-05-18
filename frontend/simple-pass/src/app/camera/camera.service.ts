@@ -10,9 +10,8 @@ export class CameraService {
     constructor(private http: HttpClient) {
 
     }
-    sendPictureAndCompare() {
-
-
+    sendPictureAndCompare(img : any) {
+        console.log('enviando.. ')
     }
 
 }

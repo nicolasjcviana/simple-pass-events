@@ -1,0 +1,17 @@
+.camera-bordered{
+    border: 1px solid black;
+    background-color: lightgray;
+}
+
+.picture-taken{
+    margin-left: 5%;
+}
+
+.take-picture-button{
+    position: relative;
+    left: 15%;
+}
+
+.nz-progress {
+    margin-right: 8px;
+  }

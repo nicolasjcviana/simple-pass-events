@@ -82,10 +82,9 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   finalStep() {
-    this.service.sendUser(this.user);
+    this.service.createUser(this.user);
     this.current += 1
   }
-
 
   increase(): void {
     this.percent = this.percent + 10;

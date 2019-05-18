@@ -1,0 +1,30 @@
+<div style="height: 20px;">
+
+  </div>
+
+  <div style="margin-bottom: 10px">
+    <button class="btn btn-primary btn-md" (click)="createNew()" >Novo</button>
+  </div>
+  <nz-table #basicTable [nzData]="users">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>E-mail<th>
+        <th>Telefone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.name}}</td>
+        <td>{{data.cpf}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.telephone}}</td>
+        <td>
+          <a >Editar</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Deletar</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>

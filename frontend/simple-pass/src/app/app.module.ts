@@ -18,6 +18,8 @@ import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.compon
 import { CameraService } from './camera/camera.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { EventoService } from './evento/evento.service';
+import { HttpClientModule } from '@angular/common/http';
+import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.component';
 registerLocaleData(pt);
 
 @NgModule({
@@ -28,7 +30,8 @@ registerLocaleData(pt);
     EventoFormComponent,
     EventoListComponent,
     FooterComponent,
-    UsuarioFormComponent
+    UsuarioFormComponent,
+    UsuarioListComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ registerLocaleData(pt);
     AppRoutingModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
     CameraService,

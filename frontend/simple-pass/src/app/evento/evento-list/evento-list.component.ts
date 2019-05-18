@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from '../evento.model';
 import { Router } from '@angular/router';
+import { EventoService } from '../evento.service';
+import 'rxjs/add/operator/catch'
 
 @Component({
   selector: 'evento-list',
@@ -11,7 +13,7 @@ export class EventoListComponent implements OnInit {
 
   events: Array<Evento> = []
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private service: EventoService) {
   }
 
   ngOnInit() {
@@ -19,11 +21,16 @@ export class EventoListComponent implements OnInit {
   }
 
   loadEvents() {
-    let evento = new Evento('UUID', 'Feijoada OBS', 'Feijoada do obs', 'Feijuca', 35, 'Blumenau');
-    this.events.push(evento);
+    this.service.listAllEvents()
+    .subscribe(events => this.events = events)
   }
 
   createNew() {
     this.router.navigate(['/evento-form/id=0']);
   }
+
+  updateEvent(id: string) {
+    this.router.navigate(['/evento-form/id=' + id]);
+  }
+
 }

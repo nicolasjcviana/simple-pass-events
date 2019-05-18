@@ -3,6 +3,9 @@ import { FormGroup, Validators, ReactiveFormsModule, FormBuilder } from '@angula
 import { MIN_LENGTH_VALIDATOR, MAX_LENGTH_VALIDATOR } from '@angular/forms/src/directives/validators';
 import { Evento } from '../evento.model';
 import { NzInputNumberModule } from 'ng-zorro-antd';
+import { UsuarioService } from 'app/usuario/usuario.service';
+import { EventoService } from '../evento.service';
+import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'evento-form',
@@ -18,7 +21,9 @@ export class EventoFormComponent implements OnInit {
   parserReal = (value: string) => value.replace('R$ ', '');
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private service: EventoService,
+    private notification: NzNotificationService) {
 
   }
 
@@ -40,7 +45,10 @@ export class EventoFormComponent implements OnInit {
   }
 
   checkEvent(evento: Evento) {
-    console.log(evento)
+    this.service.createEvent(evento)
+      .subscribe(response =>
+        this.notification.success('Evento', 'Evento criado com sucesso!')
+      )
   }
 
 }

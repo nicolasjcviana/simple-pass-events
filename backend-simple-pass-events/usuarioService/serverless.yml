@@ -24,35 +24,35 @@ functions:
       - http:
           path: user
           method: post
-          cors: false
+          cors: true
   readAll:
     handler: handler.readAll
     events:
       - http:
           path: user
           method: get
-          cors: false
+          cors: true
   readOne:
     handler: handler.readOne
     events:
       - http:
           path: user/{id}
           method: get
-          cors: false
+          cors: true
   update:
     handler: handler.update
     events:
       - http:
           path: user/{id}
           method: put
-          cors: false
+          cors: true
   delete:
     handler: handler.delete
     events:
       - http:
           path: user/{id}
           method: delete
-          cors: false
+          cors: true
 
 resources:
   Resources:

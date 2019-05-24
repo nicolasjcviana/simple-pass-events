@@ -29,6 +29,15 @@ export class EventoListComponent implements OnInit {
     this.router.navigate(['/evento-form/id=0']);
   }
 
+  delete(event : Evento){
+    this.service.deleteEvent(event.id)
+    .subscribe(response => {
+      console.log(response);
+      this.loadEvents();
+    })
+    
+  }
+
   updateEvent(id: string) {
     this.router.navigate(['/evento-form/id=' + id]);
   }

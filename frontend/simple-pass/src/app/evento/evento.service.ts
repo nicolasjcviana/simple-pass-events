@@ -27,8 +27,8 @@ export class EventoService {
         return this.http.put<Evento>(`${API_EVENT}'/'${id}`, event)
     }
 
-    deleteUser(id: string) {
-        return this.http.delete(`${API_EVENT}${id}`)
+    deleteEvent(id: string) {
+        return this.http.delete(`${API_EVENT}/${id}`)
     }
 
 

@@ -16,6 +16,8 @@ module.exports = (event, callback) => {
   };
 
   return dynamoDb.put(params, (error, data) => {
+	  console.log(error);
+	  
     if (error) {
       callback(error);
     }

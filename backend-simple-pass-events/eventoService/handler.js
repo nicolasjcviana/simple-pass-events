@@ -1,12 +1,13 @@
 'use strict';
 
-const eventCreate = require('./event-create.js/index.js');
-const eventReadAll = require('./event-read-all.js/index.js');
-const eventReadOne = require('./event-read-one.js/index.js');
-const eventUpdate = require('./event-update.js/index.js');
-const eventDelete = require('./event-delete.js/index.js');
+const eventCreate = require('./event-create.js');
+const eventReadAll = require('./event-read-all.js');
+const eventReadOne = require('./event-read-one.js');
+const eventUpdate = require('./event-update.js');
+const eventDelete = require('./event-delete.js');
 
 module.exports.create = (event, context, callback) => {
+		console.log('EVent', event);
   eventCreate(event, (error, result) => {
     const response = {
       statusCode: 200,

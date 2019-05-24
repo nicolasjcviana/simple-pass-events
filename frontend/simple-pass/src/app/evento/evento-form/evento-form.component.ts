@@ -24,7 +24,6 @@ export class EventoFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private service: EventoService,
     private notification: NzNotificationService) {
-
   }
 
   ngOnInit() {
@@ -35,10 +34,10 @@ export class EventoFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: this.formBuilder.control('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       desc: this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-      fullDesc: this.formBuilder.control('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
       ticketValue: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
-      location: this.formBuilder.control('', Validators.required),
-      dateTime: this.formBuilder.control('', Validators.required)
+      location: this.formBuilder.control('', Validators.required)
+      // fullDesc: this.formBuilder.control('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
+      // dateTime: this.formBuilder.control('', Validators.required)
     })
 
     //this.form.patchValue({ title: 'banan' })

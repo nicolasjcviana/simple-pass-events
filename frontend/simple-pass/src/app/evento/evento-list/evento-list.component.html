@@ -25,9 +25,9 @@
       <td>{{data.ticketValue}}</td>
       <td>{{data.location}}</td>
       <td>
-        <a href="#" >Editar</a>
+        <a (click)="update(data.id)" >Editar</a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="delete(data)" >Deletar</a>
+        <a (click)="delete(data.id)" >Deletar</a>
       </td>
     </tr>
   </tbody>

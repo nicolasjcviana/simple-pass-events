@@ -50,7 +50,6 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   public initVideo() {
-    console.log(this.video)
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
         if (navigator.userAgent.indexOf('Firefox') > -1) {

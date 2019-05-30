@@ -4,6 +4,9 @@
 /dist
 /tmp
 
+#confidential
+/src/app/app.api.ts
+
 # dependencies
 /node_modules
 

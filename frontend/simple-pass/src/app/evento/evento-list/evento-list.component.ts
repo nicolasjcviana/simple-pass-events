@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Evento } from '../evento.model';
 import { Router } from '@angular/router';
 import { EventoService } from '../evento.service';
+import { NzNotificationService } from 'ng-zorro-antd';
 import 'rxjs/add/operator/catch'
 
 @Component({
@@ -13,7 +14,8 @@ export class EventoListComponent implements OnInit {
 
   events: Array<Evento> = []
 
-  constructor(private router: Router, private service: EventoService) {
+  constructor(private router: Router, private service: EventoService,
+    private notification: NzNotificationService) {
   }
 
   ngOnInit() {
@@ -29,16 +31,16 @@ export class EventoListComponent implements OnInit {
     this.router.navigate(['/evento-form/id=0']);
   }
 
-  delete(event : Evento){
-    this.service.deleteEvent(event.id)
+  delete(id : string){
+    this.service.deleteEvent(id)
     .subscribe(response => {
-      console.log(response);
+      this.notification.success('Evento', 'Evento deletado com sucesso!')
       this.loadEvents();
     })
     
   }
 
-  updateEvent(id: string) {
+  update(id: string) {
     this.router.navigate(['/evento-form/id=' + id]);
   }
 

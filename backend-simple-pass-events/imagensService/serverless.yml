@@ -1,0 +1,31 @@
+service: imagensService
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  stage: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "rekognition:*"
+      Resource: "*"
+package:
+  include:
+   - ../node_modules/**
+
+plugins:
+  - serverless-offline
+
+functions:
+  uploadFile:
+    handler: handler.uploadFile
+    events:
+      - http:
+          path: uploadFile/{fileId}
+          method: post
+          cors: true

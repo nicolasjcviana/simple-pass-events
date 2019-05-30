@@ -10,6 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.443.0",
+    "file-type": "^10.11.0",
+    "middy": "^0.27.0",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^4.10.6"
   }
 }

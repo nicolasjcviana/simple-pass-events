@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, FormGroup, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { NgZorroAntdModule, NZ_I18N, pt_BR } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import pt from '@angular/common/locales/br';
 import { FooterComponent } from './footer/footer.component';
+import { HttpsRequestInterceptor } from './shared/interceptors/http-request.interceptor';
 registerLocaleData(pt);
 
 @NgModule({
@@ -29,13 +31,24 @@ registerLocaleData(pt);
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
     BrowserAnimationsModule
   ],
+  exports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
   providers: [
  //   { provide: NZ_I18N, useValue: pt_BR }
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpsRequestInterceptor,
+    multi: true
+  }
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import { MIN_LENGTH_VALIDATOR, MAX_LENGTH_VALIDATOR } from '@angular/forms/src/d
 import { Usuario } from '../usuario.model';
 import { NzProgressModule } from 'ng-zorro-antd';
 import { UsuarioService } from '../usuario.service';
+import { CameraService } from 'app/camera/camera.service';
 
 @Component({
   selector: 'user-form',
@@ -20,6 +21,9 @@ export class UsuarioFormComponent implements OnInit {
   user: Usuario
   userImage: any
   percent = 0
+  validPicture = false;
+  IMG_WIDTH = 400;
+  IMG_HEIGHT = 380;
 
   @ViewChild("video")
   public video: ElementRef
@@ -31,7 +35,8 @@ export class UsuarioFormComponent implements OnInit {
   parserReal = (value: string) => value.replace('R$ ', '');
 
   constructor(private formBuilder: FormBuilder,
-    private service: UsuarioService) {
+    private service: UsuarioService,
+    private cameraService: CameraService) {
   }
 
   ngOnInit() {
@@ -64,9 +69,28 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   public capture() {
-    this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 440, 380);
+    this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, this.IMG_WIDTH, this.IMG_HEIGHT);
     let img = this.canvas.nativeElement.toDataURL("image/png");
     this.user.picture = img
+    this.validatePhoto();
+  }
+
+  public validatePhoto() {
+    const treatedImage = this.user.picture.replace("data:image/png;base64,", "");
+    this.cameraService.validateFace(treatedImage)
+      .subscribe(res => {
+        const faceDetails = res[0];
+        if (faceDetails.Confidence > 90) {
+          this.validPicture = true;
+          var ctx = this.canvas.nativeElement.getContext("2d");
+          ctx.beginPath();
+          ctx.lineWidth = "4";
+          ctx.strokeStyle = "green";
+          ctx.rect(faceDetails.BoundingBox.Left * this.IMG_WIDTH, faceDetails.BoundingBox.Top * this.IMG_HEIGHT,
+            faceDetails.BoundingBox.Width * this.IMG_WIDTH, faceDetails.BoundingBox.Height * this.IMG_HEIGHT)
+          ctx.stroke();
+        }
+      })
   }
 
   nextStep(user: Usuario) {

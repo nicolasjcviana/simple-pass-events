@@ -6,7 +6,11 @@ import { switchMap } from "rxjs/operators";
 
 @Injectable({ providedIn: "root" })
 export class CameraService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+  validateFace(img: string): Observable<any> {
+    return this.http.post(`${ENDPOINTS.USER_IMAGE}`, img);
+  }
 
   sendPictureAndCompare(img: string, fileName: string): Observable<any> {
     return this.http.post(`${ENDPOINTS.UPLOAD_FILE_S3}/${fileName}`, img).pipe(

@@ -43,7 +43,7 @@
     <canvas class="camera-bordered picture-taken" #canvas id="canvas" width="440" height="380"></canvas>
   </div>
   <div width="440" style="margin-bottom: 20px;">
-    <button class="btn btn-primary btn-md take-picture-button" id="snap" (click)="capture()">Tirar foto</button>
+    <button [disabled]="!pictureValidated" class="btn btn-primary btn-md take-picture-button" id="snap" (click)="capture()">Tirar foto</button>
   </div>
   <div>
     <button class="btn btn-primary btn-md" (click)="goBack()" type="submit">Voltar</button>

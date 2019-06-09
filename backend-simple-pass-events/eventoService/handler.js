@@ -7,7 +7,6 @@ const eventUpdate = require('./event-update.js');
 const eventDelete = require('./event-delete.js');
 
 module.exports.create = (event, context, callback) => {
-		console.log('EVent', event);
   eventCreate(event, (error, result) => {
     const response = {
       statusCode: 200,
@@ -72,8 +71,6 @@ module.exports.delete = (event, context, callback) => {
       },
       body: JSON.stringify(result),
     };
-
-
 
     context.succeed(response);
   });

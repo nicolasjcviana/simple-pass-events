@@ -22,6 +22,7 @@ export class UsuarioFormComponent implements OnInit {
   userImage: any
   percent = 0
   validPicture = false;
+  pictureValidated = true;
   IMG_WIDTH = 400;
   IMG_HEIGHT = 380;
 
@@ -76,9 +77,11 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   public validatePhoto() {
+    this.pictureValidated = false;
     const treatedImage = this.user.picture.replace("data:image/png;base64,", "");
     this.cameraService.validateFace(treatedImage)
       .subscribe(res => {
+        this.pictureValidated = true;
         const faceDetails = res[0];
         if (faceDetails.Confidence > 90) {
           this.validPicture = true;
@@ -105,7 +108,10 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   finalStep() {
-    this.service.createUser(this.user);
+    this.service.createUser(this.user)
+    .subscribe(res => {
+      console.log(res);
+    })
     this.current += 1
   }
 

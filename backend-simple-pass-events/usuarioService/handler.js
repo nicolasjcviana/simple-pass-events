@@ -7,7 +7,6 @@ const usersUpdate = require('./users-update.js');
 const usersDelete = require('./users-delete.js');
 
 module.exports.create = (event, context, callback) => {
-	console.log('EVent', event);
   usersCreate(event, (error, result) => {
     const response = {
       statusCode: 200,
@@ -73,8 +72,6 @@ module.exports.delete = (event, context, callback) => {
       body: JSON.stringify(result),
     };
 
-
-
-    context.succeed(response);
+   context.succeed(response);
   });
 };

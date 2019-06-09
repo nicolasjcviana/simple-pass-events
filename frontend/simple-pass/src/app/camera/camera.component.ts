@@ -1,6 +1,6 @@
 import { CameraService } from "./camera.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import * as moment from "moment";
+// import * as moment from "moment";
 @Component({
   selector: "camera",
   templateUrl: "./camera.component.html",
@@ -43,9 +43,6 @@ export class CameraComponent implements OnInit {
   public sendPictureToBucketAndCompare(img: string) {
     const treatedImage = img.replace("data:image/png;base64,", "");
     this.cameraService
-      .sendPictureAndCompare(treatedImage, "teste" + moment() + ".png")
-      .subscribe(response => {
-        console.log(response);
-      });
+      .validateFace(treatedImage)
   }
 }

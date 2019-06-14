@@ -1,0 +1,58 @@
+<div nz-row>
+  <div nz-col nzSpan="8" nzOffset="7">
+    <img src="assets/logo.png"/>
+  </div>
+</div>
+<div nz-row style="margin-top: 50px">
+  <div nz-col nzSpan="8" nzOffset="8">
+    <div nz-row>
+      <h3> Simple Pass Events </h3>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzPrefix]="prefixUser">
+            <input type="text" nz-input formControlName="userName" placeholder="CPF" />
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('userName')?.dirty && validateForm.get('userName')?.errors"
+            >Por favor informe seu CPF!</nz-form-explain
+          >
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzPrefix]="prefixLock">
+            <input type="password" nz-input formControlName="password" placeholder="Senha" />
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors"
+            >Por favor informe sua senha!</nz-form-explain
+          >
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-form-explain style="color: #f5222d" *ngIf="isInvalid"
+            >CPF ou senha inválidos!</nz-form-explain
+          >
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <label nz-checkbox formControlName="remember">
+            <span>Remember me</span>
+          </label>
+          <a class="login-form-forgot" class="login-form-forgot">Esqueci a senha</a>
+          <button nz-button class="login-form-button" [nzType]="'primary'">Entrar</button>
+          Or
+          <a href="">Registrar-se!</a>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+    <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+      </div>
+    </div>
+  </div>
+</div>

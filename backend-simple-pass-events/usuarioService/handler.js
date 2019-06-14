@@ -5,6 +5,7 @@ const usersReadAll = require('./users-read-all.js');
 const usersReadOne = require('./users-read-one.js');
 const usersUpdate = require('./users-update.js');
 const usersDelete = require('./users-delete.js');
+const usersLogin = require('./users-login.js');
 
 module.exports.create = (event, context, callback) => {
   usersCreate(event, (error, result) => {
@@ -64,6 +65,20 @@ module.exports.update = (event, context, callback) => {
 
 module.exports.delete = (event, context, callback) => {
   usersDelete(event, (error, result) => {
+    const response = {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin" : "*"
+      },
+      body: JSON.stringify(result),
+    };
+
+   context.succeed(response);
+  });
+};
+
+module.exports.login = (event, context, callback) => {
+  usersLogin(event, (error, result) => {
     const response = {
       statusCode: 200,
       headers: {

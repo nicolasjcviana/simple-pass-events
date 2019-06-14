@@ -26,6 +26,7 @@ import { UsuarioService } from "./usuario/usuario.service";
 import { EventoService } from "./evento/evento.service";
 import { UsuarioListComponent } from "./usuario/usuario-list/usuario-list.component";
 import { HttpsRequestInterceptor } from "./shared/interceptors/http-request.interceptor";
+import { LoginComponent } from './login/login/login.component';
 registerLocaleData(pt);
 
 @NgModule({
@@ -37,7 +38,8 @@ registerLocaleData(pt);
     EventoListComponent,
     FooterComponent,
     UsuarioFormComponent,
-    UsuarioListComponent
+    UsuarioListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

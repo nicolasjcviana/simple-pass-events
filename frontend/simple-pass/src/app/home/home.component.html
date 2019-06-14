@@ -1,0 +1,27 @@
+
+<p  class="h1">Eventos disponíveis</p>
+<br/>
+
+<div class="card-container" *ngFor="let evento of eventos; let i = index" > 
+<nz-card style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[actionGo, actionGuests]">
+  <nz-card-meta
+    nzTitle="{{evento.title}}"
+    nzDescription="{{evento.desc}}"
+    [nzAvatar]="avatarTemplate"
+  ></nz-card-meta>
+</nz-card>
+<ng-template #avatarTemplate>
+  <nz-avatar *ngIf="i % 2 == 0" nzSrc="../../assets/evento1.jpg"></nz-avatar>
+  <nz-avatar *ngIf="i % 2 != 0" nzSrc="../../assets/evento2.jpg"></nz-avatar>
+</ng-template>
+<ng-template #coverTemplate>
+  <img alt="Imagem" *ngIf="i % 2 == 0" src="../../assets/evento2.jpg" />
+  <img alt="Imagem" *ngIf="i % 2 != 0" src="../../assets/evento1.jpg" />
+</ng-template>
+<ng-template #actionGo>
+    <button nz-button nzType="primary" (click)="go(evento)" nzBlock>Ir ao evento</button>
+</ng-template>
+<ng-template #actionGuests>
+    <i nz-icon nzType="user" nzTheme="outline"></i> {{evento.guests?.length ? evento.guests?.length : 0}}
+  </ng-template>
+</div>

@@ -5,6 +5,7 @@ export class Usuario {
       public CPF: string,
       public email: string,
       public telephone: number,
-      public picture: string
+      public picture: string,
+      public events?: string[]
     ) { }
   }

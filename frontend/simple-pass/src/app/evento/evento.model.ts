@@ -9,6 +9,7 @@ export class Evento {
     public dateTime?: Date,
     public qtOfGuests?: number,
     public beginOfTheSells?: Date,
-    public endOfTheSells?: Date
+    public endOfTheSells?: Date,
+    public guests?: string[]
   ) { }
 }

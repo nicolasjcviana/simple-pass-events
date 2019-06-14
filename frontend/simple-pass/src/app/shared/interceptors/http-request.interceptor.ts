@@ -15,6 +15,8 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    req.headers.set("Access-Control-Allow-Origin", "*");
+    req.headers.set("Access-Control-Allow-Headers", "Origin, X-Request-Width, Content-Type, Accept");
     // const dupReq = req.clone({
     //   headers: req.headers.set('access-control-allow-origin', '*')
     // });

@@ -34,7 +34,6 @@ functions:
       - http:
           path: user
           method: get
-          cors: true
   readOne:
     handler: handler.readOne
     events:

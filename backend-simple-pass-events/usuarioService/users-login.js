@@ -3,25 +3,25 @@
 const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const uuid = require("uuid");
-const middy = require("middy");
-const { cors } = require("middy/middlewares");
 var s3 = new AWS.S3();
 
 module.exports = (event, callback) => {
   const data = JSON.parse(event.body);
+  console.log("Data", data);
 
   const params = {
     TableName: "users",
-    FilterExpression: "cpf = :cpf and (attribute_not_exists(password) or password = :pass)",
+    FilterExpression: "cpf = :cpf",
     ExpressionAttributeValues: {
-      ":cpf": data.cpf,
-      ":pass": data.pass
+      ":cpf": data.cpf
     }
   };
 
-  return dynamoDb.get(params, (error, data) => {
-    console.log(params, data);
+
+  return dynamoDb.scan(params, (error, data) => {
+    console.log('chou', params, data);
     if (error) {
+      console.log('ERRORrr', error)
       callback(error);
     }
     callback(error, data);

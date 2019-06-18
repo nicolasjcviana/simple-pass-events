@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
       const value = this.validateForm.getRawValue();
       this.loggedService
         .login(value.userName, value.password)
-        .subscribe(response => {
-          if (!response) {
+        .subscribe((response: any) => {
+          if (response.Count <= 0) {
             this.isInvalid = true;
           } else {
             this.router.navigate(["/evento-list"]);

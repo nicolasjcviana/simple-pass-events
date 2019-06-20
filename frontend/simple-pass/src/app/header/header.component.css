@@ -25,3 +25,10 @@
     background-color: #4CAF50;
     color: white;
   }
+
+  .not-active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: black;
+  }

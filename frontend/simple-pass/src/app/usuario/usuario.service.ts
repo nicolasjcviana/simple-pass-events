@@ -20,7 +20,6 @@ export class UsuarioService {
   }
 
   createUser(user: Usuario): Observable<any> {
-    console.log(user)
     return this.http.post<Usuario>(`${ENDPOINTS.USER}`, user)
   }
 

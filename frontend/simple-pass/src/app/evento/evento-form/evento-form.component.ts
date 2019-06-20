@@ -6,6 +6,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd';
 import { UsuarioService } from 'app/usuario/usuario.service';
 import { EventoService } from '../evento.service';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'evento-form',
@@ -23,7 +24,8 @@ export class EventoFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private service: EventoService,
-    private notification: NzNotificationService) {
+    private notification: NzNotificationService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -45,9 +47,10 @@ export class EventoFormComponent implements OnInit {
 
   checkEvent(evento: Evento) {
     this.service.createEvent(evento)
-      .subscribe(response =>
+      .subscribe(response =>{
         this.notification.success('Evento', 'Evento criado com sucesso!')
-      )
+        this.router.navigate(["/evento-list"]);
+      })
   }
 
 }

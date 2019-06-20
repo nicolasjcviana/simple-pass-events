@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           if (response.Count <= 0) {
             this.isInvalid = true;
           } else {
-            this.router.navigate(["/evento-list"]);
+            this.router.navigate(["/home"]);
           }
         });
     }

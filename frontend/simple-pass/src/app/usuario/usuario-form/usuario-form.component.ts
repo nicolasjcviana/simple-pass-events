@@ -5,6 +5,8 @@ import { Usuario } from '../usuario.model';
 import { NzProgressModule } from 'ng-zorro-antd';
 import { UsuarioService } from '../usuario.service';
 import { CameraService } from 'app/camera/camera.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'user-form',
@@ -20,7 +22,7 @@ export class UsuarioFormComponent implements OnInit {
   current = 0
   user: Usuario
   userImage: any
-  percent = 0
+  percent = 100
   validPicture = false;
   pictureValidated = true;
   IMG_WIDTH = 400;
@@ -37,11 +39,25 @@ export class UsuarioFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private service: UsuarioService,
-    private cameraService: CameraService) {
+    private cameraService: CameraService,
+    private route: ActivatedRoute,
+    private notificationService: NzNotificationService) {
   }
 
   ngOnInit() {
     this.createFormGroup();
+    this.route.params.subscribe(params => {
+      let id = params['id'];
+      if (id && id != '0') {
+        this.service.getSingleUser(id)
+          .subscribe(user => {
+            if (user) {
+              this.user = user
+              this.form.patchValue(user);
+            }
+          })
+      }
+    });
   }
 
   createFormGroup() {
@@ -50,18 +66,17 @@ export class UsuarioFormComponent implements OnInit {
       cpf: this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
       email: this.formBuilder.control('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
       telephone: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
+      promoter: this.formBuilder.control(''),
     })
 
-    //this.form.patchValue({ title: 'banan' })
   }
 
   public initVideo() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
         if (navigator.userAgent.indexOf('Firefox') > -1) {
-          this.video.nativeElement.srcObject = stream;//window.URL.createObjectURL(stream);
+          this.video.nativeElement.srcObject = stream;
         } else {
-          console.log(stream)
           this.video.nativeElement.src = window.URL.createObjectURL(stream);
         }
         this.video.nativeElement.play();
@@ -108,10 +123,19 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   finalStep() {
-    this.service.createUser(this.user)
-    .subscribe(res => {
-      console.log(res);
-    })
+    this.user.promoter = false;
+    if (!this.user.id || this.user.id == '0') {
+      this.service.createUser(this.user)
+        .subscribe(res => {
+          console.log(res)
+          this.notificationService.success('Usuário', 'Usuário criado com sucesso!')
+        })
+    } else {
+      this.service.updateUser(this.user, this.user.id)
+        .subscribe(res => {
+          this.notificationService.success('Usuário', 'Usuário atualizado com sucesso!')
+        })
+    }
     this.current += 1
   }
 
@@ -127,5 +151,11 @@ export class UsuarioFormComponent implements OnInit {
     if (this.percent < 0) {
       this.percent = 0;
     }
+  }
+
+  setPromoter(): void {
+    this.user.promoter = true;
+    this.service.updateUser(this.user, this.user.id)
+      .subscribe(res => this.notificationService.success("Promoter", `O Usuário ${this.user.name} agora é promoter!`))
   }
 }

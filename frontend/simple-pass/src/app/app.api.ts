@@ -8,7 +8,7 @@ export const ENDPOINTS = {
 
     USER: 'https://g5vk5bg3nl.execute-api.us-east-1.amazonaws.com/dev/user',
     EVENT: 'https://hxlq4shscd.execute-api.us-east-1.amazonaws.com/dev/event',
-    USER_IMAGE:  'http://localhost:3000/checkFace'//'https://o8uxggxled.execute-api.us-east-1.amazonaws.com/dev/checkFace'
+    USER_IMAGE:  'https://o8uxggxled.execute-api.us-east-1.amazonaws.com/dev/checkFace'
 
 }
 

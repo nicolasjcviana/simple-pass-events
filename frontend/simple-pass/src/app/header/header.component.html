@@ -3,23 +3,16 @@
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" [routerLink]="['/home']"  href="#">Home</a>
-      <a class="nav-item nav-link" [routerLink]="['/camera']" href="#">Camera</a>
-      <a class="nav-item nav-link" [routerLink]="['/evento-list']" href="#">Eventos</a>
-      <a class="nav-item nav-link" [routerLink]="['/user-list']" href="#">Usuário</a>
-      <a class="nav-item nav-link" style="float: right" (click)="logout()" href="#">Sair</a>
+      <a class="nav-item nav-link" *ngIf="user.promoter" [routerLink]="['/camera']" href="#">Camera</a>
+      <a class="nav-item nav-link" *ngIf="user.promoter" [routerLink]="['/evento-list']" href="#">Eventos</a>
+      <a class="nav-item nav-link" *ngIf="user.promoter" [routerLink]="['/user-list']" href="#">Usuários</a>
+      <a class="nav-item nav-link" *ngIf="!user.promoter" [routerLink]="['/user-form/', user.id]" href="#">Usuário</a>
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
-        <i class="fa fa-github"></i>
-      </a>
-      <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
-        <i class="fa fa-twitter"></i>
-      </a>
-      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
-        <i class="fa fa-medium"></i>
-      </a>
+      <a class="nav-item nav-link not-active" style="float: right; " href="javascript:void(0)" >{{ user.name }}</a>
+      <a class="nav-item nav-link" style="float: right" (click)="logout()" href="#">Sair</a>
     </div>
   </div>
 </nav>

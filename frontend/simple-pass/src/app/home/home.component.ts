@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { Usuario } from 'app/usuario/usuario.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
+import { LoggedService } from 'app/login/logged.service';
 
 @Component({
   selector: 'home',
@@ -23,19 +24,20 @@ export class HomeComponent implements OnInit {
 
   eventos: Evento[]
   user: Usuario
-  userID = 'e5431890-8e23-11e9-b41c-61a89de5cfd5';
 
   constructor(private eventoService: EventoService,
     private notification: NzNotificationService,
-    private userService: UsuarioService) {
+    private userService: UsuarioService,
+    private loggedService: LoggedService) {
   }
 
   ngOnInit() {
+    this.user = this.loggedService.getCurrentUser();
     this.initCards();
   }
 
   initCards(): void {
-    this.userService.getSingleUser(this.userID)
+    this.userService.getSingleUser(this.user.id)
       .subscribe(user => {
         this.user = user
         this.eventoService.listAllEvents()
@@ -46,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   go(evento: Evento) {
-    evento.guests = this.updateList(evento.guests, this.userID);
+    evento.guests = this.updateList(evento.guests, this.user.id);
     this.user.events = this.updateList(this.user.events, evento.id);
 
     Observable.forkJoin([this.eventoService.updateEvent(evento, evento.id),
@@ -57,7 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   letGo(evento: Evento) {
-    evento.guests = this.removeItemFromList(evento.guests, this.userID);
+    evento.guests = this.removeItemFromList(evento.guests, this.user.id);
     this.user.events = this.removeItemFromList(this.user.events, evento.id);
 
     Observable.forkJoin([this.eventoService.updateEvent(evento, evento.id),
@@ -86,6 +88,9 @@ export class HomeComponent implements OnInit {
   }
 
   contains(eventoId: string) {
+    if(!this.user.events){
+      this.user.events = []
+    }
     return this.user.events.indexOf(eventoId) !== -1
   }
 

@@ -19,8 +19,9 @@
   <img alt="Imagem" *ngIf="i % 2 != 0" src="../../assets/evento1.jpg" />
 </ng-template>
 <ng-template #actionGo>
-    <button nz-button nzType="primary" (click)="go(evento)" nzBlock>Ir ao evento</button>
-</ng-template>
+    <button *ngIf="!contains(evento.id)" nz-button nzType="primary" (click)="go(evento)" nzBlock>Ir ao evento</button>
+    <button *ngIf="contains(evento.id)" nz-button nzType="primary" (click)="letGo(evento)" nzBlock>Deixar de ir</button>
+  </ng-template>
 <ng-template #actionGuests>
     <i nz-icon nzType="user" nzTheme="outline"></i> {{evento.guests?.length ? evento.guests?.length : 0}}
   </ng-template>

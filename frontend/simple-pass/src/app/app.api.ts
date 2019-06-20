@@ -1,3 +1,4 @@
+
 export const API = 'AWS_KEY'
 export const ENDPOINTS = {
     UPLOAD_FILE_S3: 'https://l07f72j09g.execute-api.us-east-1.amazonaws.com/dev/uploadFile',
@@ -8,6 +9,7 @@ export const ENDPOINTS = {
     USER: 'https://g5vk5bg3nl.execute-api.us-east-1.amazonaws.com/dev/user',
     EVENT: 'https://hxlq4shscd.execute-api.us-east-1.amazonaws.com/dev/event',
     USER_IMAGE:  'http://localhost:3000/checkFace'//'https://o8uxggxled.execute-api.us-east-1.amazonaws.com/dev/checkFace'
+
 }
 
 export const BUCKET_NAME = 'simple-pass-images'

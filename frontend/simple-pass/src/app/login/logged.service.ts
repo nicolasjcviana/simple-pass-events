@@ -19,9 +19,9 @@ export class LoggedService {
   login(user: string, password: string) {
     const body = { cpf: user, pass: password };
     return this.http.post(`${ENDPOINTS.USER}/login`, body).pipe(
-      tap((response: any) => {
-        if (response.Count > 0) {
-          localStorage.setItem(this.isLoggedIdentifier, "true");
+      tap(response => {
+        if (response) {
+          localStorage.setItem(this.isLoggedIdentifier, user);
         }
       })
     );

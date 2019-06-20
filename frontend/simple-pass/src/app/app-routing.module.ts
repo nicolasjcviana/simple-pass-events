@@ -8,9 +8,18 @@ import { UsuarioFormComponent } from "./usuario/usuario-form/usuario-form.compon
 import { UsuarioListComponent } from "./usuario/usuario-list/usuario-list.component";
 import { LoginComponent } from "./login/login/login.component";
 import { LoggedGuard } from "./login/logged.guard";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
-  { path: "camera", component: CameraComponent, canActivate: [LoggedGuard] },
+  { 
+    path: "home", 
+    component: HomeComponent, 
+    canActivate: [LoggedGuard] 
+  },
+  { 
+    path: "camera", 
+    component: CameraComponent, 
+    canActivate: [LoggedGuard] },
   {
     path: "evento-form/:id",
     component: EventoFormComponent,

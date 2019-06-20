@@ -21,50 +21,72 @@ import 'rxjs/add/observable/forkJoin';
 })
 export class HomeComponent implements OnInit {
 
-  eventos : Evento[]
-  user : Usuario
+  eventos: Evento[]
+  user: Usuario
   userID = 'e5431890-8e23-11e9-b41c-61a89de5cfd5';
 
   constructor(private eventoService: EventoService,
-    private notification: NzNotificationService, 
-    private userService : UsuarioService) {
+    private notification: NzNotificationService,
+    private userService: UsuarioService) {
   }
-  
+
   ngOnInit() {
     this.initCards();
   }
 
-  initCards() : void{
-    this.eventoService.listAllEvents()
-    .subscribe(eventos =>  {
-      this.eventos = eventos
-      console.log(this.eventos)
-    })
+  initCards(): void {
     this.userService.getSingleUser(this.userID)
-    .subscribe(user => {
-      this.user = user
-    console.log(user)});
+      .subscribe(user => {
+        this.user = user
+        this.eventoService.listAllEvents()
+          .subscribe(eventos => {
+            this.eventos = eventos
+          })
+      });
   }
-  
-  go(evento : Evento){
+
+  go(evento: Evento) {
     evento.guests = this.updateList(evento.guests, this.userID);
     this.user.events = this.updateList(this.user.events, evento.id);
 
     Observable.forkJoin([this.eventoService.updateEvent(evento, evento.id),
-                        this.userService.updateUser(this.user, this.user.id)])
-    .subscribe(res => {
-      this.notification.success('Evento', 'Confirmada sua ida ao evento \"' + evento.title+"\"")
-    })
+    this.userService.updateUser(this.user, this.user.id)])
+      .subscribe(res => {
+        this.notification.success('Evento', 'Confirmada sua ida ao evento \"' + evento.title + "\"")
+      })
   }
 
-  updateList(array : string[], id : string){
-    if(!array){
+  letGo(evento: Evento) {
+    evento.guests = this.removeItemFromList(evento.guests, this.userID);
+    this.user.events = this.removeItemFromList(this.user.events, evento.id);
+
+    Observable.forkJoin([this.eventoService.updateEvent(evento, evento.id),
+    this.userService.updateUser(this.user, this.user.id)])
+      .subscribe(res => {
+        this.notification.success('Evento', 'Você não ira mais ao evento \"' + evento.title + "\"")
+      })
+  }
+
+  removeItemFromList(array: string[], id: string) {
+    const index = array.indexOf(id, 0);
+    if (index > -1) {
+      array.splice(index, 1);
+    }
+    return array;
+  }
+
+  updateList(array: string[], id: string) {
+    if (!array) {
       array = []
     }
-    if (array.indexOf(id) === -1){
+    if (array.indexOf(id) === -1) {
       array.push(id);
     }
     return array
+  }
+
+  contains(eventoId: string) {
+    return this.user.events.indexOf(eventoId) !== -1
   }
 
 }

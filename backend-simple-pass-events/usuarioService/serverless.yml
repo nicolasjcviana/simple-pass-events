@@ -27,7 +27,7 @@ functions:
       - http:
           path: user
           method: post
-          cors: true
+          
   readAll:
     handler: handler.readAll
     events:
@@ -40,25 +40,25 @@ functions:
       - http:
           path: user/{id}
           method: get
-          cors: true
+          
   login:
     handler: handler.login
     events:
       - http:
           path: user/login
           method: post
-          cors: true
+          
   update:
     handler: handler.update
     events:
       - http:
           path: user/{id}
           method: put
-          cors: true
+          
   delete:
     handler: handler.delete
     events:
       - http:
           path: user/{id}
           method: delete
-          cors: true
+          

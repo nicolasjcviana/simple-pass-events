@@ -7,10 +7,8 @@ export class Usuario {
     public telephone: number,
     public picture: string,
     public promoter = false,
-    public events?: string[]
-  ) {
-    }
-    getSimpleName() : string {
-      return this.name.split("\\s")[0];
-    }
+    public events?: string[],
+    public confirmed?: boolean
+  ) {  }
+     
   }

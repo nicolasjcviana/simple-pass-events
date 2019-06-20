@@ -47,7 +47,34 @@ functions:
       - http:
           path: user/login
           method: post
-          
+          cors: true
+  readAllIn:
+    handler: handler.readAllIn
+    events:
+      - http:
+          path: user/in
+          method: post
+  detectFace:
+    handler: handler.search_face
+    events:
+      - http:
+          path: face/detect
+          method: post
+          cors: true
+  indexFaces:
+    handler: handler.indexFaces
+    events:
+      - http:
+          path: face/index
+          method: post
+          cors: true
+  deleteFaces:
+    handler: handler.deleteFace
+    events:
+      - http:
+          path: face/delete
+          method: post
+          cors: true
   update:
     handler: handler.update
     events:

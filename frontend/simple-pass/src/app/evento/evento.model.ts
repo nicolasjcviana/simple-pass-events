@@ -10,6 +10,7 @@ export class Evento {
     public qtOfGuests?: number,
     public beginOfTheSells?: Date,
     public endOfTheSells?: Date,
-    public guests?: string[]
+    public guests?: string[],
+    public guestsConfirmeds?: string[]
   ) { }
 }

@@ -28,6 +28,8 @@ import { UsuarioListComponent } from "./usuario/usuario-list/usuario-list.compon
 import { HttpsRequestInterceptor } from "./shared/interceptors/http-request.interceptor";
 import { LoginComponent } from './login/login/login.component';
 import { HomeComponent } from "./home/home.component";
+import { EventoRecognitionComponent } from './evento-recognition/evento-recognition.component';
+
 registerLocaleData(pt);
 
 @NgModule({
@@ -41,7 +43,8 @@ registerLocaleData(pt);
     UsuarioFormComponent,
     UsuarioListComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EventoRecognitionComponent
   ],
   imports: [
     BrowserModule,

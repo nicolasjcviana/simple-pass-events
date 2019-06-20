@@ -7,6 +7,7 @@
       <a class="nav-item nav-link" *ngIf="user.promoter" [routerLink]="['/evento-list']" href="#">Eventos</a>
       <a class="nav-item nav-link" *ngIf="user.promoter" [routerLink]="['/user-list']" href="#">Usuários</a>
       <a class="nav-item nav-link" *ngIf="!user.promoter" [routerLink]="['/user-form/', user.id]" href="#">Usuário</a>
+      <a class="nav-item nav-link" *ngIf="user.promoter" [routerLink]="['/evento-recog']" href="#">Rodar evento</a>
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">

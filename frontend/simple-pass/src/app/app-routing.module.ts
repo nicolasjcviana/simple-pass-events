@@ -1,3 +1,4 @@
+import { EventoRecognitionComponent } from './evento-recognition/evento-recognition.component';
 import { NgModule, Component } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
@@ -11,6 +12,7 @@ import { LoggedGuard } from "./login/logged.guard";
 
 const routes: Routes = [
   { path: "camera", component: CameraComponent, canActivate: [LoggedGuard] },
+  {path: 'evento-recog', component: EventoRecognitionComponent, canActivate: [LoggedGuard]},
   {
     path: "evento-form/:id",
     component: EventoFormComponent,

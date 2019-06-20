@@ -6,6 +6,7 @@ export class Usuario {
       public email: string,
       public telephone: number,
       public picture: string,
-      public events?: string[]
+      public events?: string[],
+      public confirmed?: boolean
     ) { }
   }

@@ -1,3 +1,7 @@
+<h3 style="padding-top: 32px;padding-bottom: 32px;">
+  <span *ngIf="!id">Novo usuário</span>
+  <span *ngIf="id">Editar usuário</span>
+ </h3>
 <nz-steps [nzCurrent]="current">
   <nz-step nzTitle="Cadastro" nzDescription="Cadastro de usuário"></nz-step>
   <nz-step nzTitle="Foto" nzDescription="Tirar foto"></nz-step>
@@ -66,9 +70,9 @@
     <h2>Enviando..</h2>
 
     <nz-progress class="nz-progress" [nzPercent]="percent" nzType="circle"></nz-progress>
-    <nz-button-group>
+    <!-- <nz-button-group>
       <button nz-button (click)="decline()"><i nz-icon type="minus"></i></button>
       <button nz-button (click)="increase()"><i nz-icon type="plus"></i></button>
-    </nz-button-group>
+    </nz-button-group> -->
   </div>
 </div>

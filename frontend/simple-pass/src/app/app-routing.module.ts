@@ -12,18 +12,18 @@ import { LoggedGuard } from "./login/logged.guard";
 import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
-  { 
-    path: "home", 
-    component: HomeComponent, 
-    canActivate: [LoggedGuard] 
+  {
+    path: "home",
+    component: HomeComponent,
+    canActivate: [LoggedGuard]
   },
-  { path: "camera", 
-    component: CameraComponent, 
-    canActivate: [LoggedGuard] 
+  { path: "camera",
+    component: CameraComponent,
+    canActivate: [LoggedGuard]
   },
   {
-    path: 'evento-recog', 
-    component: EventoRecognitionComponent, 
+    path: 'evento-recog',
+    component: EventoRecognitionComponent,
     canActivate: [LoggedGuard]
   },
   {
@@ -35,6 +35,11 @@ const routes: Routes = [
     path: "evento-list",
     component: EventoListComponent,
     canActivate: [LoggedGuard]
+  },
+  {
+    path: "register",
+    component: UsuarioFormComponent,
+    canActivate: []
   },
   {
     path: "user-form/:id",

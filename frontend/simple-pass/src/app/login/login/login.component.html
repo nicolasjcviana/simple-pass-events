@@ -41,12 +41,12 @@
       <nz-form-item>
         <nz-form-control>
           <label nz-checkbox formControlName="remember">
-            <span>Remember me</span>
+            <span>Lembre-se de mim</span>
           </label>
           <a class="login-form-forgot" class="login-form-forgot">Esqueci a senha</a>
           <button nz-button class="login-form-button" [nzType]="'primary'">Entrar</button>
-          Or
-          <a href="">Registrar-se!</a>
+          Ou
+          <a (click)="registrarse()" >Registrar-se!</a>
         </nz-form-control>
       </nz-form-item>
     </form>

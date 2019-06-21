@@ -1,26 +1,28 @@
-<div nz-row>
-  <div nz-col nzSpan="24">
-    <nz-select
-      style="width: 100%;"
-      nzShowSearch
-      nzAllowClear
-      nzPlaceHolder="Selecione um evento"
-      [(ngModel)]="eventoSelecionado"
-      (ngModelChange)="atualizarEvento($event)"
-    >
-    <ng-container *ngFor="let item of eventos">
-      <nz-option [nzLabel]="item.title" [nzValue]="item"></nz-option>
-    </ng-container>
-    </nz-select>
-  </div>
-</div>
- <div nz-row style="padding-top: 16px">
+ <div nz-row>
   <div nz-col nzSpan="24">
     <nz-collapse>
       <nz-collapse-panel
-        [nzHeader]="painelHeader"
+        nzHeader="{{ eventoSelecionado?.desc || 'Selecione o evento' }} - Participantes - {{totalParticipantesConfirmados}} de {{totalParticipantes}} confirmados"
         [nzActive]="isPainelAtivo"
       >
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <nz-select
+            style="width: 100%;"
+            nzShowSearch
+            nzAllowClear
+            nzPlaceHolder="Selecione um evento"
+            [(ngModel)]="eventoSelecionado"
+            (ngModelChange)="atualizarEvento($event)"
+          >
+          <ng-container *ngFor="let item of eventos">
+            <nz-option [nzLabel]="item.title" [nzValue]="item"></nz-option>
+          </ng-container>
+          </nz-select>
+        </div>
+      </div>
+      <div nz-row style="padding-top: 14px">
+        <div nz-col nzSpan="24">
         <nz-table #basicTable [nzData]="participantesEvento">
           <thead>
             <tr>
@@ -29,6 +31,7 @@
               <th>E-mail<th>
               <th>Telefone</th>
               <th>Confirmado</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -41,16 +44,36 @@
             </tr>
           </tbody>
         </nz-table>
+      </div>
+      </div>
       </nz-collapse-panel>
     </nz-collapse>
   </div>
 </div>
-<div nz-row>
-  <div>
-    <video class="camera-bordered" style="float: left" #video id="video" width="440" height="380" autoplay></video>
-    <canvas class="camera-bordered picture-taken" #canvas id="canvas" width="440" height="380"></canvas>
+<div nz-row style="padding-top: 14px;">
+  <div nz-col nzSpan="14">
+    <video class="camera-bordered" style="float: left" #video id="video" width="100%" height="480" autoplay></video>
+    <canvas class="camera-bordered picture-taken" #canvas id="canvas" style="display: none;" width="440" height="380"></canvas>
   </div>
-  <div width="440" style="margin-bottom: 20px;">
-    <button [disabled]="!pictureValidated" class="btn btn-primary btn-md take-picture-button" id="snap" (click)="capture()">Tirar foto</button>
+  <div nz-col nzSpan="10">
+    <h3 style="padding-left: 14px;"> Status:
+      <ng-container [ngSwitch]="status">
+        <h3 *ngSwitchCase="'SELECIONE'">Selecione um evento</h3>
+        <h3 *ngSwitchCase="'BUSCANDO'">Buscando</h3>
+        <h3 *ngSwitchCase="'NAO_ENCONTRADO'">Não encontrado</h3>
+        <h3 *ngSwitchCase="'ENCONTRADO'">Encontrado</h3>
+      </ng-container>
+     </h3>
+     <ng-container [ngSwitch]="status">
+        <img *ngSwitchCase="'BUSCANDO'" src="assets/carregamento.gif"/>
+
+        <div *ngSwitchCase="'ENCONTRADO'" style="padding-left: 150px">
+          <img src="assets/success.png" width="65%" height="65%"/>
+        </div>
+
+        <div *ngSwitchCase="'NAO_ENCONTRADO'" style="padding-left: 150px">
+          <img src="assets/warning.png" width="65%" height="65%"/>
+        </div>
+      </ng-container>
   </div>
 </div>

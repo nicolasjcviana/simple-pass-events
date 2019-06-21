@@ -12,8 +12,8 @@ export class CameraService {
     return this.http.post(`${ENDPOINTS.USER_IMAGE}`, img);
   }
 
-  detecFace(img: string): Observable<any> {
-    return this.http.post(`${ENDPOINTS.USER}/face/detect`, img);
+  detectFace(img: string): Observable<any> {
+    return this.http.post(`${ENDPOINTS.USER_FACE}/face/detect`, img);
   }
 
   sendPictureAndCompare(img: string, fileName: string): Observable<any> {

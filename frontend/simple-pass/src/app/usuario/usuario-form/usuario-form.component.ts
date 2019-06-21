@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { MIN_LENGTH_VALIDATOR, MAX_LENGTH_VALIDATOR } from '@angular/forms/src/directives/validators';
@@ -27,6 +28,7 @@ export class UsuarioFormComponent implements OnInit {
   pictureValidated = true;
   IMG_WIDTH = 400;
   IMG_HEIGHT = 380;
+  id : string;
 
   @ViewChild("video")
   public video: ElementRef
@@ -41,7 +43,8 @@ export class UsuarioFormComponent implements OnInit {
     private service: UsuarioService,
     private cameraService: CameraService,
     private route: ActivatedRoute,
-    private notificationService: NzNotificationService) {
+    private notificationService: NzNotificationService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -49,6 +52,7 @@ export class UsuarioFormComponent implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id'];
       if (id && id != '0') {
+        this.id = id;
         this.service.getSingleUser(id)
           .subscribe(user => {
             if (user) {
@@ -74,11 +78,8 @@ export class UsuarioFormComponent implements OnInit {
   public initVideo() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-        if (navigator.userAgent.indexOf('Firefox') > -1) {
-          this.video.nativeElement.srcObject = stream;
-        } else {
-          this.video.nativeElement.src = window.URL.createObjectURL(stream);
-        }
+        this.video.nativeElement.srcObject = stream; //window.URL.createObjectURL(stream);
+        // this.video.nativeElement.src = window.URL.createObjectURL(stream);
         this.video.nativeElement.play();
       });
     }
@@ -124,16 +125,23 @@ export class UsuarioFormComponent implements OnInit {
 
   finalStep() {
     this.user.promoter = false;
+    this.user.picture =  this.user.picture.replace("data:image/png;base64,", "");
     if (!this.user.id || this.user.id == '0') {
       this.service.createUser(this.user)
         .subscribe(res => {
           console.log(res)
           this.notificationService.success('Usuário', 'Usuário criado com sucesso!')
-        })
+          if (this.router.url === '/register') {
+            this.router.navigate(['/login']);
+          }
+        });
     } else {
       this.service.updateUser(this.user, this.user.id)
         .subscribe(res => {
-          this.notificationService.success('Usuário', 'Usuário atualizado com sucesso!')
+          this.notificationService.success('Usuário', 'Usuário atualizado com sucesso!');
+          if (this.router.url === '/register') {
+            this.router.navigate(['/login']);
+          }
         })
     }
     this.current += 1

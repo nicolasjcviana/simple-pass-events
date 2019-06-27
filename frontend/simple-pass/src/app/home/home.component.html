@@ -15,8 +15,7 @@
   <nz-avatar *ngIf="i % 2 != 0" nzSrc="../../assets/evento2.jpg"></nz-avatar>
 </ng-template>
 <ng-template #coverTemplate>
-  <img alt="Imagem" *ngIf="i % 2 == 0" src="../../assets/evento2.jpg" />
-  <img alt="Imagem" *ngIf="i % 2 != 0" src="../../assets/evento1.jpg" />
+  <img alt="Imagem" [src]="evento.picture" />
 </ng-template>
 <ng-template #actionGo>
     <button *ngIf="!contains(evento.id)" nz-button nzType="primary" (click)="go(evento)" nzBlock>Ir ao evento</button>

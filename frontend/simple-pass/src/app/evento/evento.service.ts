@@ -23,11 +23,11 @@ export class EventoService {
     }
 
     updateEvent(event: Evento, id: string): Observable<Evento> {
-        return this.http.put<Evento>(`${ENDPOINTS.EVENT}/${id}`, event)
+        return this.http.put<Evento>(`${ENDPOINTS.EVENT}${id}`, event)
     }
 
     deleteEvent(id: string) {
-        return this.http.delete(`${ENDPOINTS.EVENT}/${id}`)
+        return this.http.delete(`${ENDPOINTS.EVENT}${id}`)
     }
 
 

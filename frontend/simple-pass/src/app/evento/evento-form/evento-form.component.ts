@@ -17,6 +17,7 @@ export class EventoFormComponent implements OnInit {
 
   form: FormGroup
   numberPattern = /^[0-9]*$/
+  picure : string;
 
   formatterReal = (value: number) => `R$ ${value}`;
   parserReal = (value: string) => value.replace('R$ ', '');
@@ -44,8 +45,18 @@ export class EventoFormComponent implements OnInit {
 
     //this.form.patchValue({ title: 'banan' })
   }
+  onFileChanged(event) {
+    var reader = new FileReader();
+    
+    reader.readAsDataURL(event.target.files[0]); // read file as data url
+    
+    reader.onload = (event : any) => { // called once readAsDataURL is completed
+      this.picure = event.target.result;
+    }
+  }
 
   checkEvent(evento: Evento) {
+    evento.picture = this.picure;
     this.service.createEvent(evento)
       .subscribe(response =>{
         this.notification.success('Evento', 'Evento criado com sucesso!')

@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
         this.eventoService.listAllEvents()
           .subscribe(eventos => {
             this.eventos = eventos
+            eventos.forEach(eve => console.log(eve))
           })
       });
   }

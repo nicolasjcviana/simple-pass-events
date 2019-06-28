@@ -3,17 +3,12 @@
 <br/>
 
 <div class="card-container" *ngFor="let evento of eventos; let i = index" > 
-<nz-card style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[actionGo, actionGuests]">
+<nz-card style="width: 200px;" [nzCover]="coverTemplate" [nzActions]="[actionGo, actionGuests]">
   <nz-card-meta
     nzTitle="{{evento.title}}"
     nzDescription="{{evento.desc}}"
-    [nzAvatar]="avatarTemplate"
   ></nz-card-meta>
 </nz-card>
-<ng-template #avatarTemplate>
-  <nz-avatar *ngIf="i % 2 == 0" nzSrc="../../assets/evento1.jpg"></nz-avatar>
-  <nz-avatar *ngIf="i % 2 != 0" nzSrc="../../assets/evento2.jpg"></nz-avatar>
-</ng-template>
 <ng-template #coverTemplate>
   <img alt="Imagem" [src]="evento.picture" />
 </ng-template>

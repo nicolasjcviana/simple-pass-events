@@ -23,12 +23,12 @@
     </div>
     <br />
     <div class="row">
-       <div class="col-sm-6 col-xs-12">
-        <label for="date"> </label>
-        <input type="file" (change)="onFileChanged($event)">
-        <!-- <nz-date-picker [nzSize]="default" formControlName="dateTime" id ="date"></nz-date-picker> -->
-      </div> -
+      <div class="col-sm-6 col-xs-12">
+        <label for="file">Imagem do evento</label>
+        <input id="file" style="display:none" type="file" (change)="onFileChanged($event)">  
+      </div>
     </div>
+    <br />
     <div class="row">
       <div class="col-sm-12 col-xs-12">
         <label for="fullDesc">Descrição detalhada</label>

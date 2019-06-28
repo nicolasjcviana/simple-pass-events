@@ -10,6 +10,7 @@ export class Evento {
     public qtOfGuests?: number,
     public beginOfTheSells?: Date,
     public endOfTheSells?: Date,
+    public picture: string = '../../assets/evento2.jpg',
     public guests?: string[],
     public guestsConfirmeds?: string[]
   ) { }

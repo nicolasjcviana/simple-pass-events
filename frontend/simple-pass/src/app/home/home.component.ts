@@ -14,6 +14,7 @@ import { Usuario } from 'app/usuario/usuario.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
 import { LoggedService } from 'app/login/logged.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'home',
@@ -28,7 +29,8 @@ export class HomeComponent implements OnInit {
   constructor(private eventoService: EventoService,
     private notification: NzNotificationService,
     private userService: UsuarioService,
-    private loggedService: LoggedService) {
+    private loggedService: LoggedService,
+    private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -42,8 +44,10 @@ export class HomeComponent implements OnInit {
         this.user = user
         this.eventoService.listAllEvents()
           .subscribe(eventos => {
-            this.eventos = eventos
-            eventos.forEach(eve => console.log(eve))
+            eventos.forEach((eve : any) => {
+              eve.picture = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + eve.picture);
+            })
+            this.eventos = eventos;
           })
       });
   }

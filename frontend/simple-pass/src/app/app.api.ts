@@ -8,7 +8,8 @@ export const ENDPOINTS = {
 
     USER: 'https://g5vk5bg3nl.execute-api.us-east-1.amazonaws.com/dev/user',
     USER_FACE: 'https://g5vk5bg3nl.execute-api.us-east-1.amazonaws.com/dev',
-    EVENT: 'https://hxlq4shscd.execute-api.us-east-1.amazonaws.com/dev/event',
+    //USER_FACE: 'http://localhost:3000',//'https://g5vk5bg3nl.execute-api.us-east-1.amazonaws.com/dev',
+    EVENT: 'http://localhost:3001/event/', //'https://hxlq4shscd.execute-api.us-east-1.amazonaws.com/dev/event',
     USER_IMAGE:  'https://o8uxggxled.execute-api.us-east-1.amazonaws.com/dev/checkFace'
 
 }
